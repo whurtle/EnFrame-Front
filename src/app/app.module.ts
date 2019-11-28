@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MustMatchDirective } from './_helpers/must-match.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { UserRegestrationService } from './user-regestration.service';
     LoginComponent,
     CreateAccountComponent,
     NavComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
