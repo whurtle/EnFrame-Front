@@ -1,0 +1,41 @@
+
+
+// /* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+  background-color: #4CAF50;
+}
+
+.card-header{
+    text-align: center;
+    background-color: white;
+}
+.container{
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 50%;
+  border: 5px;
+  box-sizing: border-box;  
+}
+.btnReg{
+  background-color: #445dca;
+  width: 80px;
+  height: 35px;
+  color: white;  
+}
+.btnCan{
+  background-color: #928f8f;
+  width: 80px;
+  height: 35px;
+  color: white;  
+}

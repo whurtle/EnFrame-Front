@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { User } from '../user';
+import { UserRegestrationService } from '../user-regestration.service';
+import { Router } from '@angular/router';
+// import { MustMatch } from './_helpers/must-match.validator';
 
 @Component({
     selector: 'create-account',
@@ -8,31 +12,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 
 export class CreateAccountComponent implements OnInit {
-    registerForm: FormGroup;
-    submitted = false;
+    
+    user: User=new User("","","","");
+    message:any;
+    // model: any = { };
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private service: UserRegestrationService,
+                private formBuilder: FormBuilder,
+                private router: Router,
+        ){ }
 
-    ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(6)]]
-        });
+    ngOnInit(){
     }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
-
     onSubmit() {
-        this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
-
-        alert('SUCCESS!! :-)')
+        alert('Success!! :-)\n\n' + JSON.stringify(this.user, null, 4));
+        let resp = this.service.doRegistration(this.user)
+        resp.subscribe((data) =>this.message=data);
+        this.router.navigate(['/login']);
     }
 }

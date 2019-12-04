@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MustMatchDirective } from './_helpers/must-match.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatInputModule } from '@angular/material/input';
+import { UserRegestrationService } from './user-regestration.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { MatInputModule } from '@angular/material/input';
     ProfileComponent,
     LoginComponent,
     CreateAccountComponent,
-    NavComponent
+    NavComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
@@ -39,10 +43,10 @@ import { MatInputModule } from '@angular/material/input';
     NgMatSearchBarModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
 
   ],
-  providers: [],
+  providers: [UserRegestrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
