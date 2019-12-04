@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class UserRegestrationService {
 
   getUserDetails(){
     // post these details to http API and return user info if correct.
+  }
+
+  public loginValidation(username, pass){
+    return this.http.get<string>("http://localhost:8080/user/checkCredentials", { params : {email : username, password : pass}});
   }
 }
