@@ -36,6 +36,11 @@
         <a mat-list-item (click)=isLoggedIn()> 
           <mat-icon class="icon">dashboard</mat-icon>
           Profile</a>
+          
+          <a mat-list-item [routerLink]="'/upload'">
+            <mat-icon class="icon">publish</mat-icon>
+            Upload
+          </a>
         <a mat-list-item (click)=logOut() [routerLink]="'/'"> 
           <mat-icon class="icon">input</mat-icon>
           Sign Out </a>
