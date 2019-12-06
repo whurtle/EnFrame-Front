@@ -37,10 +37,12 @@ export class UploadComponent implements OnInit {
       reader.onload = (res: any) => {
         this.imageSrc = res.target.result;
 
-        setTimeout(async () => {
-          const imgEl = this.imageEl.nativeElement;
-          this.predictions = await this.model.classify(imgEl);
-        }, 0);
+        for (let i = 0; i < 2; i++) {
+          setTimeout(async () => {
+            const imgEl = this.imageEl.nativeElement;
+            this.predictions = await this.model.classify(imgEl);
+          }, 0);
+        }
       }
     }
   
