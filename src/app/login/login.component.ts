@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { UserRegestrationService } from '../user-regestration.service';
-
-//  import { AlertService, AuthenticationService } from '@_services';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from '../services/local-storage.service'
 
 @Component({ 
   selector: 'app-login',
@@ -15,32 +13,41 @@ export class LoginComponent implements OnInit {
     username = ''
     password = ''
     message:any;
-    // model: any = { };
 
-    constructor(private service: UserRegestrationService,
+    constructor(
                 private formBuilder: FormBuilder,
                 private router: Router,
+                private http: HttpClient,
+                private localStorageService: LocalStorageService
         ){ }
 
     ngOnInit(){
-        // localStorage.removeItem('currentUser');
-        
+        const newUser = 'new user'; 
     }
 
     checkLogin() {
-        // alert('Success!! :-)\n\n' + JSON.stringify(this.user, null, 4));
-        let resp = this.service.loginValidation(this.username, this.password); // should also take password
+        let resp = this.http.get<string>("http://localhost:8080/user/checkCredentials", { params : {email : this.username, password : this.password}});
       
         resp.subscribe((res)=>{
             status = res;
           
-        //   alert(status);
         if(status == 'true'){
             this.router.navigate(['']);
-            
+            sessionStorage.setItem('username', this.username)
         }    
         else
             alert("LOGIN FAILED");
         });
     }
+
+    isUserLoggedIn() {
+        let user = sessionStorage.getItem('username')
+        console.log(!(user === null))
+        return !(user === null)
+      }
+    
+      logOut() {
+        sessionStorage.removeItem('username')
+      }
+
 }

@@ -36,7 +36,7 @@
         <a mat-list-item [routerLink]="'/profile'"> 
           <mat-icon class="icon">dashboard</mat-icon>
           Profile</a>
-        <a mat-list-item [routerLink]="'/sign-out'"> 
+        <a mat-list-item (click)=logOut() [routerLink]="'/'"> 
           <mat-icon class="icon">input</mat-icon>
           Sign Out </a>
         <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>

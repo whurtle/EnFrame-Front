@@ -12,4 +12,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkLogin(){
+    let user = sessionStorage.getItem('username')
+    alert(user)
+  }
+
 }
