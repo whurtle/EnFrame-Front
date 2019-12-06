@@ -18,6 +18,7 @@ import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatInputModule } from '@angular/material/input';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './services/local-storage.service';
+import { UploadComponent } from './upload/upload.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { LocalStorageService } from './services/local-storage.service';
     LoginComponent,
     CreateAccountComponent,
     NavComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
