@@ -17,6 +17,7 @@ import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatBu
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatInputModule } from '@angular/material/input';
 import { UserRegestrationService } from './user-regestration.service';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { UserRegestrationService } from './user-regestration.service';
     LoginComponent,
     CreateAccountComponent,
     NavComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
