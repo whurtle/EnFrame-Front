@@ -20,6 +20,7 @@ import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UploadComponent } from './upload/upload.component';
 import { AdminComponent } from './admin/admin.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { AdminComponent } from './admin/admin.component';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    StorageServiceModule
+    StorageServiceModule,
+    MatGridListModule,
 
   ],
   providers: [LocalStorageService],
