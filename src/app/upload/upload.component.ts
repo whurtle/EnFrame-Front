@@ -13,7 +13,7 @@ import { HTTPRequest } from '@tensorflow/tfjs-core/dist/io/http';
 })
 export class UploadComponent implements OnInit {
 
-  imageSrc: string;
+  imageSrc: File;
   @ViewChild('img', {static: false}) imageEl: ElementRef;
 
   //predictions: Prediction[];
@@ -53,18 +53,19 @@ async fileChangeEvent(event) {
           this.predictions = await this.model.classify(imgEl);
         }, 0);
       }
-      const uploadData = new FormData();
-      uploadData.append('Myfile',this.imageSrc);
-      this.http.post('http://localhost:8080/photo/uploadPhoto', uploadData,{
-        headers: undefined,
-        reportProgress: true,
-        observe: 'events'
-      })
-        .subscribe(event => {
-          console.log(event)
-        });
+
       }
     }
+    const uploadeImage = new FormData();
+    uploadeImage.append('Myfile',this.imageSrc);
+    this.http.post('http://localhost:8080/photo/uploadPhoto', uploadeImage,{
+      // headers: undefined,
+      reportProgress: true,
+      observe: 'events'
+    })
+      .subscribe(event => {
+        console.log(event)
+      });
 
   }
 }
