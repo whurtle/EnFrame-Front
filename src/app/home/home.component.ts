@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  photos: Iterable<Object>;
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+  ) { }
 
   ngOnInit() {
   }
-
+  searchWord(curTag){
+    this.http.get<Iterable<Object>>("https://enflame-backend.herokuapp.com/photo/getPhotosByTag", {params: {tag : curTag}}).subscribe(
+      data => {
+        this.photos = data;
+      }
+    )
+  }
 }

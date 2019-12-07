@@ -19,7 +19,7 @@
 <div id="search-field">
 <form class="search-form">
     <mat-form-field class="search-full-width">
-        <input matInput placeholder="Image Search" value=" ">
+        <input #searchWord (change)=searchImage(searchWord.value) matInput placeholder="Image Search" value=" ">
 
     </mat-form-field>
 </form>
@@ -27,16 +27,17 @@
 <br> <br>
 <br>
 <div id="grid">
-        <mat-grid-list cols="3" rowHeight="3:2">
-                <mat-grid-tile>1</mat-grid-tile>
-                <mat-grid-tile>2</mat-grid-tile>
+        <mat-grid-list *ngFor="let photo of photos" cols="3" rowHeight="3:2">
+
+                <mat-grid-tile><img src="https://s3.console.aws.amazon.com/s3/buckets/test-bucket438/{{photo.reference}}"></mat-grid-tile>
+                <!-- <mat-grid-tile>2</mat-grid-tile>
                 <mat-grid-tile>3</mat-grid-tile>
                 <mat-grid-tile>4</mat-grid-tile>
                 <mat-grid-tile>5</mat-grid-tile>
                 <mat-grid-tile>6</mat-grid-tile>
                 <mat-grid-tile>7</mat-grid-tile>
                 <mat-grid-tile>8</mat-grid-tile>
-                <mat-grid-tile>9</mat-grid-tile>
+                <mat-grid-tile>9</mat-grid-tile> -->
 
         </mat-grid-list>
 </div>
