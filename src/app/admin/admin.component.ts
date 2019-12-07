@@ -42,7 +42,6 @@ export class AdminComponent implements OnInit {
   }
   deleteUser(currEmail){
     this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/user/deleteUser", {params: {email: currEmail}}).subscribe();
-    this.router.navigate(['/admin']);
     this.reload();
   }
   deletePhoto(currReference){
