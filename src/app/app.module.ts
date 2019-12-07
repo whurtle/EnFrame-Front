@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UploadComponent } from './upload/upload.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { UploadComponent } from './upload/upload.component';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    StorageServiceModule
+    StorageServiceModule,
+    MatGridListModule,
 
   ],
   providers: [LocalStorageService],
