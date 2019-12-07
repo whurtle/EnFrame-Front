@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, SystemJsNgModuleLoader } from '@angular/core';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import { Prediction } from '../prediction';
 
