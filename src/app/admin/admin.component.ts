@@ -29,12 +29,20 @@ export class AdminComponent implements OnInit {
       }
     )
   }
-
-  deleteUser(email){
-    // this.http.
+  reload(){
+    this.router.navigateByUrl(`/`).then(
+      () => {
+        this.router.navigateByUrl(`/admin`);
+      });
   }
-  deletePhoto(reference){
-
+  deleteUser(currEmail){
+    this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/user/deleteUser", {params: {email: currEmail}}).subscribe();
+    this.router.navigate(['/admin']);
+    this.reload();
+  }
+  deletePhoto(currReference){
+    this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/photo/deletePhoto", { params : {reference : currReference}}).subscribe();
+    this.reload();
   }
 
 }

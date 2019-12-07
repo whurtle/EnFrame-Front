@@ -19,19 +19,11 @@
 <div id="search-field">
 <form class="search-form">
     <mat-form-field class="search-full-width">
-        <input #searchInput (change)=searchPhotos(searchInput.value) matInput placeholder="Image Search" value=" ">
+        <input matInput placeholder="Image Search" value=" ">
 
     </mat-form-field>
 </form>
 </div>
-<br>
-<ul *ngFor="let photo of photos">
-    <!-- <td><button (click)=deletePhoto(u)>Delete</button></td> -->
-
-    <img src="https://test-bucket438.s3-us-west-1.amazonaws.com/{{photo.reference}}" width="50px">
-
-
-</ul>
 
 <footer>
     <button (click)=isAdmin()>Admin Options</button>

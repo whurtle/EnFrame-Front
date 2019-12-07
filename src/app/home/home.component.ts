@@ -8,31 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  photos: Iterable<Object>;
+
   constructor(
     private router: Router,
     private http: HttpClient,
   ) { }
 
   ngOnInit() {
-
   }
-  searchPhotos(searchTag){
-    this.http.get<Iterable<Object>>("https://enflame-backend.herokuapp.com/photo/getPhotosByTag", {params: {tag : searchTag}}).subscribe(
-      data => {
-        this.photos = data;
-        alert(this.photos);
-      }
-    )
-  }
+  
   isAdmin() {
     
     let user = sessionStorage.getItem('username');
-    let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
+    let resp = this.http.get<boolean>(`https://enflame-backend.herokuapp.com/user/isAdmin?email=${user}`, { params : {email : user}});
     if(!resp){
       alert("Incorrect");
     }else{
-      this.router.navigate(['/admin'])
+      this.router.navigate(['/admin']);
     }
   }
 }

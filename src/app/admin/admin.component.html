@@ -13,7 +13,7 @@ Images:
 <table mdbTable mdbTableScroll scrollY="true" maxHeight="300" bordered="true">
   <tbody>
     <tr *ngFor="let photo of photos">
-      <td><button (click)=deletePhoto(u)>Delete</button></td>
+      <td><button (click)=deletePhoto(photo.reference)>Delete</button></td>
 
       <th scope="row"><img src="https://test-bucket438.s3-us-west-1.amazonaws.com/{{photo.reference}}" width="50px"></th>
 
