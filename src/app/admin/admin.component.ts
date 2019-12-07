@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { WavesModule, TableModule } from 'angular-bootstrap-md';
+import { throwMatDuplicatedDrawerError } from '@angular/material';
 
 @Component({
   selector: 'app-admin',
@@ -30,10 +31,14 @@ export class AdminComponent implements OnInit {
     )
   }
   reload(){
-    this.router.navigateByUrl(`/`).then(
-      () => {
-        this.router.navigateByUrl(`/admin`);
-      });
+    setTimeout(() => 
+    {
+      this.router.navigateByUrl(`/`).then(
+        () => {
+          this.router.navigateByUrl(`/admin`);
+        });
+    },
+    1000);
   }
   deleteUser(currEmail){
     this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/user/deleteUser", {params: {email: currEmail}}).subscribe();
