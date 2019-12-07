@@ -20,16 +20,15 @@ export class UploadComponent implements OnInit {
   constructor() { }
 
   async ngOnInit() {
-    //this.loading = true; 
+    // this.loading = true; 
     console.log('loading mobilenet model...');
     this.model = await mobilenet.load();
     console.log('Successfully loaded model');
     this.loading = false;
   }
-  
   async fileChangeEvent(event) {
 
-    if(event.target.files && event.target.files[0]) {
+    if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]);
@@ -43,10 +42,8 @@ export class UploadComponent implements OnInit {
             this.predictions = await this.model.classify(imgEl);
           }, 0);
         }
-      }
+      };
     }
-  
-    
     }
 
 }
