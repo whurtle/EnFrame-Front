@@ -16,7 +16,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatInputModule } from '@angular/material/input';
-import { UserRegestrationService } from './user-regestration.service';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { LocalStorageService } from './services/local-storage.service';
+import { UploadComponent } from './upload/upload.component';
 import { AdminComponent } from './admin/admin.component';
 
 
@@ -29,6 +31,7 @@ import { AdminComponent } from './admin/admin.component';
     CreateAccountComponent,
     NavComponent,
     MustMatchDirective,
+    UploadComponent,
     AdminComponent
   ],
   imports: [
@@ -46,9 +49,10 @@ import { AdminComponent } from './admin/admin.component';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
+    StorageServiceModule
 
   ],
-  providers: [UserRegestrationService],
+  providers: [LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

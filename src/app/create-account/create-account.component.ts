@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../user';
-import { UserRegestrationService } from '../user-regestration.service';
 import { Router } from '@angular/router';
-// import { MustMatch } from './_helpers/must-match.validator';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'create-account',
@@ -15,19 +14,19 @@ export class CreateAccountComponent implements OnInit {
     
     user: User=new User("","","","");
     message:any;
-    // model: any = { };
 
-    constructor(private service: UserRegestrationService,
+    constructor(
                 private formBuilder: FormBuilder,
                 private router: Router,
+                private http: HttpClient,
         ){ }
-
     ngOnInit(){
     }
 
     onSubmit() {
         alert('Success!! :-)\n\n' + JSON.stringify(this.user, null, 4));
-        let resp = this.service.doRegistration(this.user)
+
+        let resp = this.http.post("http://localhost:8080/user/addUser",this.user,{responseType: 'text' as 'json'})
         resp.subscribe((data) =>this.message=data);
         this.router.navigate(['/login']);
     }
