@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import { Prediction } from '../prediction';
+import { HttpClient, HttpRequest } from '@angular/common/http';
+import { LocalStorageService } from '../services/local-storage.service'
+import { hostViewClassName } from '@angular/compiler';
+import { HTTPRequest } from '@tensorflow/tfjs-core/dist/io/http';
 
 @Component({
   selector: 'app-upload',
@@ -12,12 +16,15 @@ export class UploadComponent implements OnInit {
   imageSrc: string;
   @ViewChild('img', {static: false}) imageEl: ElementRef;
 
-  predictions: Prediction[];
-
+  //predictions: Prediction[];
+  predictions: String[];
   model: any;
   loading: boolean;
+  message: any;
+  username = 'username';
 
-  constructor() { }
+  constructor(private http: HttpClient,
+              private localStorageService: LocalStorageService) { }
 
   async ngOnInit() {
     //this.loading = true; 
@@ -26,27 +33,38 @@ export class UploadComponent implements OnInit {
     console.log('Successfully loaded model');
     this.loading = false;
   }
-  
-  async fileChangeEvent(event) {
 
-    if(event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
+  getUsername(){
+    sessionStorage.getItem('username');
+  }
 
-      reader.readAsDataURL(event.target.files[0]);
+async fileChangeEvent(event) {
 
-      reader.onload = (res: any) => {
-        this.imageSrc = res.target.result;
+  if(event.target.files && event.target.files[0]) {
+    const reader = new FileReader();
 
-        for (let i = 0; i < 2; i++) {
-          setTimeout(async () => {
-            const imgEl = this.imageEl.nativeElement;
-            this.predictions = await this.model.classify(imgEl);
-          }, 0);
-        }
+    reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = (res: any) => {
+     this.imageSrc = res.target.result;
+      for (let i = 0; i < 2; i++) {
+        setTimeout(async () => {
+          const imgEl = this.imageEl.nativeElement;
+          this.predictions = await this.model.classify(imgEl);
+        }, 0);
+      }
+      const uploadData = new FormData();
+      uploadData.append('Myfile',this.imageSrc);
+      this.http.post('http://localhost:8080/photo/uploadPhoto', uploadData,{
+        headers: undefined,
+        reportProgress: true,
+        observe: 'events'
+      })
+        .subscribe(event => {
+          console.log(event)
+        });
       }
     }
-  
-    
-    }
 
+  }
 }

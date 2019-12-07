@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
   checkLogin(){
     let user = sessionStorage.getItem('username')
-    alert(user)
+    // alert(user)
   }
 
 }
