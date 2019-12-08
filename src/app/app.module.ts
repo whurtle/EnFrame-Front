@@ -13,15 +13,16 @@ import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule, MatPaginator } from '@angular/material';
 import { NgMatSearchBarModule } from 'ng-mat-search-bar';
 import { MatInputModule } from '@angular/material/input';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UploadComponent } from './upload/upload.component';
 import { AdminComponent } from './admin/admin.component';
-import {MatGridListModule} from '@angular/material/grid-list';
-
+import { MatGridListModule} from '@angular/material/grid-list';
+import { MatPaginatorModule, MatProgressSpinnerModule, 
+  MatSortModule, MatTableModule } from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -52,6 +53,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     StorageServiceModule,
     MatGridListModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule
+   
+
 
   ],
   providers: [LocalStorageService],
