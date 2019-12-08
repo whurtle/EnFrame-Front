@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit {
           this.router.navigateByUrl(`/admin`);
         });
     },
-    1000);
+    2000);
   }
   deleteUser(currEmail){
     this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/user/deleteUser", {params: {email: currEmail}}).subscribe();
@@ -49,6 +49,7 @@ export class AdminComponent implements OnInit {
   }
   deletePhoto(currReference){
     this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/photo/deletePhoto", { params : {reference : currReference}}).subscribe();
+    this.http.delete<Boolean>("https://enflame-backend.herokuapp.com/user/deleteFromAllFavorites", { params : {reference : currReference}}).subscribe();
     this.reload();
   }
 
