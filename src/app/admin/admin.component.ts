@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { WavesModule, TableModule } from 'angular-bootstrap-md';
 import { throwMatDuplicatedDrawerError } from '@angular/material';
-import { DataService } from  "./data.service";
-import { Policy } from  "./policy";
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +12,6 @@ import { Policy } from  "./policy";
 export class AdminComponent implements OnInit {
   users: Iterable<Object>;
   photos: Iterable<Object>;
-  dataSource = this.users;
   constructor(
     private router: Router,
     private http: HttpClient,
