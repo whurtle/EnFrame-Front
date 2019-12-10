@@ -23,12 +23,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.username = sessionStorage.getItem('username');
-    let resp = this.http.get<Object>("http://localhost:8080/user/getUser", { params : {email: this.username}})
+    let resp = this.http.get<Object>("https://enflame-backend.herokuapp.com/user/getUser", { params : {email: this.username}})
     .subscribe( data => {
       this.user = data;
     })
 
-    let resp2 = this.http.get<Iterable<String>>("http://localhost:8080/user/getUserFavorites", { params : {email: this.username}})
+    let resp2 = this.http.get<Iterable<String>>("https://enflame-backend.herokuapp.com/user/getUserFavorites", { params : {email: this.username}})
     .subscribe( data => {
       this.favorites = data;
       console.log(this.favorites)
