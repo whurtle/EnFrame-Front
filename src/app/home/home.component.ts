@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.addFavorite("1234");
+    //this.addFavorite("1234");
   }
   
   isAdmin() {
