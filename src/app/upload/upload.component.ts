@@ -79,7 +79,7 @@ export class UploadComponent implements OnInit {
       formData.append('file', this.fileData);
       console.log(this.fileData);
       //let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
-      this.http.post<string>('http://localhost:8080/photo/uploadPhoto', formData)
+      this.http.post<string>('https://enflame-backend.herokuapp.com/photo/uploadPhoto', formData)
         .subscribe(res => {
           console.log(res);
           // this.uploadedFilePath = res.data.filePath;
