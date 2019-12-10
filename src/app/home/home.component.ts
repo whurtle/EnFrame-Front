@@ -10,12 +10,15 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   photos: Iterable<Object>;
+  message: any;
+  username = '';
   constructor(
     private router: Router,
     private http: HttpClient,
   ) { }
 
   ngOnInit() {
+    this.addFavorite("1234");
   }
   
   isAdmin() {
@@ -34,5 +37,21 @@ export class HomeComponent implements OnInit {
         this.photos = data;
       }
     )
+  }
+
+  addFavorite(reference) {
+
+    this.username = sessionStorage.getItem('username');
+    if(this.username == null) {
+      return;
+    }
+    else {
+
+    this.username = "av123@gmail.com";
+    let resp = this.http.get("https://enflame-backend.herokuapp.com/user/addFavorite", { params : {email: this.username, reference: reference}});
+    resp.subscribe((data) => this.message = data);
+    alert('Success');
+    }
+  
   }
 }
