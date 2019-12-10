@@ -1,51 +1,21 @@
 
-<div id="fullname">Profile</div>
+   <div id="userName">
+   <div *ngIf="user">
+        <div>{{user.firstName}} {{user.lastName}}</div>
+    </div>
+    
+    <h1> My Favorites </h1>
 
-<h1> My Favorites </h1>
+    <div id="grid">
+        <mat-grid-list *ngIf="favorites" cols="3" rowHeight="3:2">
+                <mat-grid-tile *ngFor="let favorite of favorites"><img src="https://test-bucket438.s3-us-west-1.amazonaws.com/{{favorite}}" style="max-width:400px;"></mat-grid-tile>
+        </mat-grid-list>
+        
+    
+    </div>   
+    <br/> <br/> <br/><br/> <br/> <br/>
 
-<div class="gallery">
-    <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
+    <p id="upload"><input type="button" class="uploadButton" value="Logout"></p>
+
+    <br/> <br/>
 </div>
-
-<div class="gallery">
-    <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-    <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-    <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-        <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-        <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-        <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-        <img src="assets/placeholder.jpg" width="200" height="200">
-<div class="desc">Add a description of the image here</div>
-</div>
-
-<br/> <br/> <br/><br/> <br/> <br/>
-
-<p id="upload"><input type="button" class="uploadButton" value="Logout"></p>
-
-
-<br/> <br/>
