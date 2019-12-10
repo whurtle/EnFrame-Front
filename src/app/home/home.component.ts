@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.addFavorite("1234");
   }
   
   isAdmin() {
@@ -39,9 +40,18 @@ export class HomeComponent implements OnInit {
   }
 
   addFavorite(reference) {
+
     this.username = sessionStorage.getItem('username');
+    if(this.username == null) {
+      return;
+    }
+    else {
+
+    this.username = "av123@gmail.com";
     let resp = this.http.get("https://enflame-backend.herokuapp.com/user/addFavorite", { params : {email: this.username, reference: reference}});
     resp.subscribe((data) => this.message = data);
     alert('Success');
+    }
+  
   }
 }
