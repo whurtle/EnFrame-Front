@@ -4,7 +4,7 @@ import { Prediction } from '../prediction';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { LocalStorageService } from '../services/local-storage.service'
 import { hostViewClassName } from '@angular/compiler';
-import { HTTPRequest } from '@tensorflow/tfjs-core/dist/io/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload',
@@ -24,7 +24,12 @@ export class UploadComponent implements OnInit {
   username = 'username';
 
   constructor(private http: HttpClient,
+              private router: Router,
               private localStorageService: LocalStorageService) { }
+  fileData: File = null;
+  previewUrl:any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
 
   async ngOnInit() {
     // this.loading = true; 
@@ -40,9 +45,10 @@ export class UploadComponent implements OnInit {
 
 
   async fileChangeEvent(event) {
-
+    this.fileProgress(event);
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
+
 
   if(event.target.files && event.target.files[0]) {
     const reader = new FileReader();
@@ -57,7 +63,9 @@ export class UploadComponent implements OnInit {
           this.predictions = await this.model.classify(imgEl);
         }, 0);
       }
-
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (res: any) => {
+        this.imageSrc = res.target.result;
         for (let i = 0; i < 2; i++) {
           setTimeout(async () => {
             const imgEl = this.imageEl.nativeElement;
@@ -66,7 +74,36 @@ export class UploadComponent implements OnInit {
         }
       };
     }
-    }
-
   }
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+  }
+
+  preview() {
+    // Show preview 
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+  }
+    var reader = new FileReader();      
+    reader.readAsDataURL(this.fileData); 
+    reader.onload = (_event) => { 
+      this.previewUrl = reader.result; 
+    }
+  }
+  
+  onSubmit() {
+      const formData = new FormData();
+      formData.append('file', this.fileData);
+      console.log(this.fileData);
+      //let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
+      this.http.post<string>('https://enflame-backend.herokuapp.com/photo/uploadPhoto', formData)
+        .subscribe(res => {
+          console.log(res);
+          // this.uploadedFilePath = res.data.filePath;
+          alert('SUCCESS !!');
+        }) 
+    }
 }

@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { WavesModule, TableModule } from 'angular-bootstrap-md';
 import { throwMatDuplicatedDrawerError } from '@angular/material';
-// import { DataService } from  "./data.service";
-// import { Policy } from  "./policy";
 
 @Component({
   selector: 'app-admin',

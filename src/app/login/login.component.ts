@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     }
 
     checkLogin() {
-        let resp = this.http.get<string>("http://localhost:8080/user/checkCredentials", { params : {email : this.username, password : this.password}});
+        let resp = this.http.get<string>("https://enflame-backend.herokuapp.com/user/checkCredentials", { params : {email : this.username, password : this.password}});
       
         resp.subscribe((res)=>{
             status = res;
