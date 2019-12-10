@@ -3,8 +3,6 @@ import * as mobilenet from '@tensorflow-models/mobilenet';
 import { Prediction } from '../prediction';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { timeout } from 'q';
-import { metadata } from '../metadata';
 
 @Component({
   selector: 'app-upload',
@@ -81,32 +79,31 @@ export class UploadComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.fileData);
       console.log(this.fileData);
-      let tagList = [];
-      for(let i = 0; i < 3; i++){
-        tagList.push(this.predictions[i].className);
-      }
+      let tagList = this.predictions[0].className;
+      // for(let i = 0; i < 3; i++){
+      //   tagList.push(this.predictions[i].className);
+      // }
       //let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
       this.http.post<Object>('https://enflame-backend.herokuapp.com/photo/uploadPhoto', formData)
         .subscribe(res => {
           console.log(res);
-          console.log(tagList);
-          let user = sessionStorage.getItem('username');
-          console.log(user);
           this.curRef = res['response'];
-          console.log(this.curRef)
-          
-          this.http.post('https://enflame-backend.herokuapp.com/photo/uploadMetadata', {params : {reference : this.curRef, tags : tagList, userWhoUploaded : user}})
           // .subscribe(res => {
           //   console.log(res);
           // });
+          console.log(tagList);
+          let user = sessionStorage.getItem('username');
+          console.log(user);
           
+          console.log(this.curRef)
+        this.submitMeta(this.curRef, tagList, user);
           alert('SUCCESS !!');
         });
-      // setTimeout(() => 
-      //   {
-          
-      //   },
-      //   5000);
+        
+       
+      
     }
-}
-
+    submitMeta(ref, tagList, user){
+      this.http.get('https://enflame-backend.herokuapp.com/photo/uploadMetadata', {params : {reference : ref, tags : tagList, userWhoUploaded : user}}).subscribe();
+    }
+  }
