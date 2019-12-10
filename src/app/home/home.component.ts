@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   photos: Iterable<Object>;
+  message: any;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     let user = sessionStorage.getItem('username');
     
     let resp = this.http.post("https://enflame-backend.herokuapp.com/user/addFavorite", {  params : {email: user, reference: this.photos}});
-    
+    resp.subscribe((data) =>this.message=data);
+    alert("Success");
   }
 }
