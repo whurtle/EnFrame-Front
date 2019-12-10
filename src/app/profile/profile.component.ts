@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -6,15 +8,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  firstName = '';
+  lastName = '';
+  username = '';
+  user: Object;
+  favorites: Iterable<String>;
+  reference = '';
+  
+  constructor(
+                private router: Router,
+                private http: HttpClient,
+  ) { }
 
-  constructor() { }
 
   ngOnInit() {
-  }
+    this.username = sessionStorage.getItem('username');
+    let resp = this.http.get<Object>("https://enflame-backend.herokuapp.com/user/getUser", { params : {email: this.username}})
+    .subscribe( data => {
+      this.user = data;
+    })
 
-  checkLogin(){
-    let user = sessionStorage.getItem('username')
-    alert(user)
-  }
+    let resp2 = this.http.get<Iterable<String>>("https://enflame-backend.herokuapp.com/user/getUserFavorites", { params : {email: this.username}})
+    .subscribe( data => {
+      this.favorites = data;
+      console.log(this.favorites)
+    });
+    }
+  
+
+    checkLogin(){
+    this.username = sessionStorage.getItem('username')
+    // alert(user)
+    }
 
 }
