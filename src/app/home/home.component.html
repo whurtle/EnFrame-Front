@@ -19,10 +19,24 @@
 <div id="search-field">
 <form class="search-form">
     <mat-form-field class="search-full-width">
-        <input matInput placeholder="Image Search" value=" ">
+        <input #searchWord (change)=searchImage(searchWord.value) matInput placeholder="Image Search" value=" ">
 
     </mat-form-field>
 </form>
 </div>
+<br> <br>
+<br>
+<div id="grid">
+        <mat-grid-list *ngIf="photos" cols="3" rowHeight="3:2">
+                <mat-grid-tile *ngFor="let photo of photos.slice(0,9)"><img src="https://test-bucket438.s3-us-west-1.amazonaws.com/{{photo.reference}}" style="max-width:400px;"></mat-grid-tile>
+        </mat-grid-list>
+</div>
+
+
+
+
+<footer>
+    <button (click)=isAdmin()>Admin Options</button>
+</footer>
 
 

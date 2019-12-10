@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, SystemJsNgModuleLoader } from '@angular/core';
 import * as mobilenet from '@tensorflow-models/mobilenet';
 import { Prediction } from '../prediction';
 import { HttpClient, HttpRequest } from '@angular/common/http';
@@ -27,7 +27,7 @@ export class UploadComponent implements OnInit {
               private localStorageService: LocalStorageService) { }
 
   async ngOnInit() {
-    //this.loading = true; 
+    // this.loading = true; 
     console.log('loading mobilenet model...');
     this.model = await mobilenet.load();
     console.log('Successfully loaded model');
@@ -38,7 +38,11 @@ export class UploadComponent implements OnInit {
     sessionStorage.getItem('username');
   }
 
-async fileChangeEvent(event) {
+
+  async fileChangeEvent(event) {
+
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
 
   if(event.target.files && event.target.files[0]) {
     const reader = new FileReader();
@@ -54,18 +58,15 @@ async fileChangeEvent(event) {
         }, 0);
       }
 
-      }
+        for (let i = 0; i < 2; i++) {
+          setTimeout(async () => {
+            const imgEl = this.imageEl.nativeElement;
+            this.predictions = await this.model.classify(imgEl);
+          }, 0);
+        }
+      };
     }
-    const uploadeImage = new FormData();
-    uploadeImage.append('Myfile',this.imageSrc);
-    this.http.post('http://localhost:8080/photo/uploadPhoto', uploadeImage,{
-      // headers: undefined,
-      reportProgress: true,
-      observe: 'events'
-    })
-      .subscribe(event => {
-        console.log(event)
-      });
+    }
 
   }
 }

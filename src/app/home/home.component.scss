@@ -13,6 +13,11 @@
     width: 100%;
   }
 
-  #images {
-      float:center;
+  mat-grid-tile {
+    background: lightblue;
+  }
+
+  #grid {
+    padding-left: 65px;
+    padding-right: 65px;
   }

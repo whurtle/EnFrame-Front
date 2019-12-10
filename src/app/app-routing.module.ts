@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { UploadComponent } from './upload/upload.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'nav', component: NavComponent},
   { path: 'home', component: HomeComponent},
   { path: 'upload', component: UploadComponent},
+  { path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({
