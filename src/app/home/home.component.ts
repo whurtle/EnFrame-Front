@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   isAdmin() {
     
     let user = sessionStorage.getItem('username');
-    let resp = this.http.get<boolean>(`https://enflame-backend.herokuapp.com/user/isAdmin?email=${user}`, { params : {email : user}});
+    let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
     if(!resp){
       alert("Incorrect");
     }else{
