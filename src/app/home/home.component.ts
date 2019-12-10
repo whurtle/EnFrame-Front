@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
 
   photos: Iterable<Object>;
   message: any;
+  username = '';
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -37,11 +38,10 @@ export class HomeComponent implements OnInit {
     )
   }
 
-  addFavorite() {
-    let user = sessionStorage.getItem('username');
-    
-    let resp = this.http.post("https://enflame-backend.herokuapp.com/user/addFavorite", {  params : {email: user, reference: this.photos}});
-    resp.subscribe((data) =>this.message=data);
-    alert("Success");
+  addFavorite(reference) {
+    this.username = sessionStorage.getItem('username');
+    let resp = this.http.get("https://enflame-backend.herokuapp.com/user/addFavorite", { params : {email: this.username, reference: reference}});
+    resp.subscribe((data) => this.message = data);
+    alert('Success');
   }
 }

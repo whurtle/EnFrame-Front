@@ -29,7 +29,7 @@
 <div id="grid">
         <mat-grid-list *ngIf="photos" cols="3" rowHeight="3:2">
                 <mat-grid-tile *ngFor="let photo of photos.slice(0,9)">
-                        <button (click)=addFavorite() mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+                        <button (click)=addFavorite(photo.reference) mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
                                 <mat-icon>favorite</mat-icon>
                         </button>
                               <img src="https://test-bucket438.s3-us-west-1.amazonaws.com/{{photo.reference}}" style="max-width:400px;">
