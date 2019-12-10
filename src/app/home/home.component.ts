@@ -35,4 +35,11 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  addFavorite() {
+    let user = sessionStorage.getItem('username');
+    
+    let resp = this.http.post("https://enflame-backend.herokuapp.com/user/addFavorite", {  params : {email: user, reference: this.photos}});
+    
+  }
 }

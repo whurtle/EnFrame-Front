@@ -26,7 +26,7 @@ export class CreateAccountComponent implements OnInit {
     onSubmit() {
         alert('Success!! :-)\n\n' + JSON.stringify(this.user, null, 4));
 
-        let resp = this.http.post("http://localhost:8080/user/addUser",this.user,{responseType: 'text' as 'json'})
+        let resp = this.http.post("https://enflame-backend.herokuapp.com/user/addUser",this.user,{responseType: 'text' as 'json'})
         resp.subscribe((data) =>this.message=data);
         this.router.navigate(['/login']);
     }
