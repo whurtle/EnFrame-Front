@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-=======
 import { HttpClient } from '@angular/common/http';
->>>>>>> HomeGrid
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,11 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-<<<<<<< HEAD
 
-=======
   photos: Iterable<Object>;
->>>>>>> HomeGrid
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -24,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
-<<<<<<< HEAD
   
   isAdmin() {
     
@@ -35,13 +27,12 @@ export class HomeComponent implements OnInit {
     }else{
       this.router.navigate(['/admin']);
     }
-=======
+  }
   searchImage(curTag){
     this.http.get<Iterable<Object>>("https://enflame-backend.herokuapp.com/photo/getPhotosByTag", {params: {tag : curTag}}).subscribe(
       data => {
         this.photos = data;
       }
     )
->>>>>>> HomeGrid
   }
 }
