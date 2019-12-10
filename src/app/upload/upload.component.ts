@@ -38,7 +38,7 @@ export class UploadComponent implements OnInit {
     this.loading = false;
   }
   async fileChangeEvent(event) {
-
+    this.fileProgress(event);
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
 
