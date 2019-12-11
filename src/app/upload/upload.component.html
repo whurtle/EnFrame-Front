@@ -18,5 +18,11 @@
         <button class="btn btn-primary"  (click)="onSubmit()">Submit</button>
       </div>
     </div>
+
+    <div class="list-group">
+      <div class="list-group-item" *ngFor="let item of predictions">
+          {{item.className}} <!-- - {{item.probability | percent}} -->
+      </div>
+  </div>
   
 </div>
