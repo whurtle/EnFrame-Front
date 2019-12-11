@@ -19,13 +19,6 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.addFavorite("1234");
-    let user = sessionStorage.getItem('username');
-    this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}}).subscribe(
-      data => {
-        this.isAdminBool = data;
-      }
-    );
   }
   
   isAdmin() {
