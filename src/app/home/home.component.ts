@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
     }
     else {
 
-    this.username = "av123@gmail.com";
+    this.username = sessionStorage.getItem('username');
     let resp = this.http.get("https://enflame-backend.herokuapp.com/user/addFavorite", { params : {email: this.username, reference: reference}});
     resp.subscribe((data) => this.message = data);
     alert('Added to Favorites');
