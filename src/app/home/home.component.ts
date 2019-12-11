@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
     this.username = "av123@gmail.com";
     let resp = this.http.get("https://enflame-backend.herokuapp.com/user/addFavorite", { params : {email: this.username, reference: reference}});
     resp.subscribe((data) => this.message = data);
-    alert('Success');
+    alert('Added to Favorites');
     }
   
   }
