@@ -19,11 +19,10 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
   }
   
   isAdmin() {
-    
-    
       this.router.navigate(['/admin']);
   }
   searchImage(curTag){
