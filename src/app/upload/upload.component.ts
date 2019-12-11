@@ -17,7 +17,7 @@ export class UploadComponent implements OnInit {
   @ViewChild('img', {static: false}) imageEl: ElementRef;
 
   //predictions: Prediction[];
-  predictions: String[];
+  predictions: Prediction[];
   model: any;
   loading: boolean;
   message: any;
@@ -91,10 +91,10 @@ export class UploadComponent implements OnInit {
       const formData = new FormData();
       formData.append('file', this.fileData);
       console.log(this.fileData);
-      let tagList = this.predictions[0];
-      // for(let i = 0; i < 3; i++){
-      //   tagList.push(this.predictions[i].className);
-      // }
+      var tagList = ' ';
+      this.predictions.forEach(element => {
+        tagList += ' ' + element.className;
+      });
       //let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
       this.http.post<Object>('https://enflame-backend.herokuapp.com/photo/uploadPhoto', formData)
         .subscribe(res => {

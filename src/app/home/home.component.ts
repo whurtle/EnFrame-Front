@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   photos: Iterable<Object>;
   message: any;
   username = '';
+  isAdminBool : boolean = false;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -19,17 +20,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.addFavorite("1234");
+    let user = sessionStorage.getItem('username');
+    this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}}).subscribe(
+      data => {
+        this.isAdminBool = data;
+      }
+    );
   }
   
   isAdmin() {
     
-    let user = sessionStorage.getItem('username');
-    let resp = this.http.get<boolean>("https://enflame-backend.herokuapp.com/user/isAdmin", { params : {email : user}});
-    if(!resp){
-      alert("Incorrect");
-    }else{
+    
       this.router.navigate(['/admin']);
-    }
   }
   searchImage(curTag){
     this.http.get<Iterable<Object>>("https://enflame-backend.herokuapp.com/photo/getPhotosByTag", {params: {tag : curTag}}).subscribe(
