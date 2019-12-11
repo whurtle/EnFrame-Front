@@ -15,6 +15,8 @@ export class NavComponent implements OnInit {
 
   logOut(){
     sessionStorage.removeItem('username');
+    this.router.navigateByUrl(`/login`);
+
     // sessionStorage.clear();
   }
 
